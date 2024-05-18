@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>함수(function)</title>
+  <link rel="stylesheet" href="/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-primary">helloWorld()</button>
+      <button type="button" class="btn btn-danger">helloWorld()</button>
+      <hr>
+
+      <button type="button" id="btn-one">Change the Color of the fisrt button to green</button>
+      <button type="button" id="btn-green">Change the Color of All buttons To Green</button>
+      <button type="button" id="btn-red">Change the Color of All buttons To Red</button>
+    </div>
+  </div>
+
+  <script>
+    // 함수 정의 (function definition)
+    // 함수 선언 (function declaration)
+    function helloWorld() {
+      alert('hello world!');
+    }
+    
+    function changeOneColorToGreen() {
+      document.querySelector('.btn').style.backgroundColor = 'green';
+      alert('첫번째 요소 하나만 녹색적용');
+    }
+
+    function changeOthersColorToGreen() {
+      let buttons = document.querySelectorAll('.btn'); //NodeList 반환
+      buttons.forEach(function(button){
+        button.style.backgroundColor = 'green';
+      });
+
+      alert('forEach문으로 모든 요소 녹색적용');
+    }
+
+    function changeOthersColorToRed() {
+      let buttons = document.getElementsByClassName('btn'); //HTMLCollection 반환
+      for (let i = 0; i < buttons.length; i++){
+        buttons[i].style.backgroundColor = 'red';
+      };
+      
+      alert('for루프로 모든 요소 빨간색적용');
+    }
+
+
+    // 함수 호출 (function call)
+    //helloWorld();
+
+    document.querySelector('.btn-primary').onclick = function() {
+      helloWorld();
+    }
+
+    document.querySelector('.btn-danger').onclick = helloWorld;
+
+    document.getElementById('btn-one').addEventListener('click', changeOneColorToGreen);
+    document.getElementById('btn-green').addEventListener('click', changeOthersColorToGreen);
+    document.getElementById('btn-red').addEventListener('click', changeOthersColorToRed);
+
+
+  </script>
+</body>
+</html>
